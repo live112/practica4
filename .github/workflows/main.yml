@@ -3,8 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
 
 jobs:
   build-deploy:
@@ -26,7 +24,9 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
